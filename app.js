@@ -11,7 +11,7 @@ window.addEventListener(`load`, () => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
             //const proxy = `https://cors-anywhere.herokuapp.com/`;
-            let api = `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
+            let api = /*${proxy}*/ `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
             //
             fetch(api)
                 .then(response => {
@@ -28,7 +28,7 @@ window.addEventListener(`load`, () => {
                     setIcons(main, document.querySelector(`.icon-display`));
                     temperatrureSection.addEventListener(`click`, () => {
                         if (temperatrureUnit.textContent === "C") {
-                            api = `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
+                            api = /*${proxy}*/ `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
                             fetch(api)
                                 .then(response => {
                                     return response.json();
@@ -39,7 +39,7 @@ window.addEventListener(`load`, () => {
                                     temperatrureUnit.textContent = "F";
                                 })
                         } else {
-                            api = `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
+                            api = /*${proxy}*/ `api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
                             fetch(api)
                                 .then(response => {
                                     return response.json();
