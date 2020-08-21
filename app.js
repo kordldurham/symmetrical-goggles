@@ -10,8 +10,8 @@ window.addEventListener(`load`, () => {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-            //const proxy = `https://cors-anywhere.herokuapp.com/`;
-            let api = `/*${proxy}*/api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
+            const proxy = `https://cors-anywhere.herokuapp.com/`;
+            let api = `${proxy}api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
             //
             fetch(api)
                 .then(response => {
@@ -20,12 +20,12 @@ window.addEventListener(`load`, () => {
                 .then(data => {
                     console.log(data)
                     const apiTemperature = data.current.temp;
-                    const { description } = data.current.weather[0];
+                    const { main } = data.current.weather[0];
                     const apiTimezone = data.timezone;
                     temperatureDegree.textContent = apiTemperature;
-                    temperatureDescription.textContent = description.toUpperCase();
+                    temperatureDescription.textContent = main.toUpperCase();
                     locationTimezone.textContent = apiTimezone;
-                    setIcons(description, document.querySelector(`.icon-display`));
+                    setIcons(main, document.querySelector(`.icon-display`));
                     temperatrureSection.addEventListener(`click`, () => {
                         if (temperatrureUnit.textContent === "C") {
                             api = `${proxy}api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
@@ -54,9 +54,9 @@ window.addEventListener(`load`, () => {
                 })
         })
 
-        function setIcons(icon, iconID) {
+        function setIcons(main, iconID) {
             let skycons = new Skycons({ "color": "#22ff55" });
-            const currentIcon = icon.replace(/ /g, "_").toUpperCase();
+            const currentIcon = `"` + main.toUpperCase + `"`;
             skycons.play();
             return skycons.set(iconID, skycons[currentIcon]);
         }
