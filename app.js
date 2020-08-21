@@ -10,8 +10,8 @@ window.addEventListener(`load`, () => {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-            const proxy = `https://cors-anywhere.herokuapp.com/`;
-            let api = `${proxy}api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
+            //const proxy = `https://cors-anywhere.herokuapp.com/`;
+            let api = /*`${proxy}*/api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=c6e1c6a1b1d5c50aa30efa50ff543300`;
             //
             fetch(api)
                 .then(response => {
